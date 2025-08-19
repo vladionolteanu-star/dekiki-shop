@@ -1,29 +1,38 @@
-import { getProducts } from '@/lib/shopify'
+import { getProducts } from '../lib/shopify'
 
 export default async function Home() {
-  const products = await getProducts()
+  let products = []
+  
+  try {
+    products = await getProducts()
+  } catch (error) {
+    console.error('Error loading products:', error)
+  }
   
   return (
-    <div style={{ padding: '20px', fontFamily: 'system-ui' }}>
-      <h1>Dekiki Shop</h1>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px', marginTop: '20px' }}>
-        {products.map(({ node }) => (
-          <div key={node.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px' }}>
+    <div className="product-grid">
+      {products.length > 0 ? (
+        products.map(({ node }) => (
+          <div key={node.id} className="product-card">
             {node.images.edges[0] && (
               <img 
                 src={node.images.edges[0].node.url} 
                 alt={node.title}
-                style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+                className="product-image"
               />
             )}
-            <h3>{node.title}</h3>
-            <p>{node.priceRange.minVariantPrice.amount} RON</p>
-            <button style={{ background: '#000', color: '#fff', padding: '10px 20px', border: 'none', cursor: 'pointer', width: '100%' }}>
-              Vezi Produs
-            </button>
+            <div className="product-info">
+              <h3 className="product-title">{node.title}</h3>
+              <p className="product-price">{node.priceRange.minVariantPrice.amount} RON</p>
+              <button className="buy-button">
+                SHUT UP AND TAKE MY MONEY!
+              </button>
+            </div>
           </div>
-        ))}
-      </div>
+        ))
+      ) : (
+        <p>Se încarcă produsele...</p>
+      )}
     </div>
   )
 }
