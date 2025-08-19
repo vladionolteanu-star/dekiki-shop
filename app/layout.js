@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <div className="header-clean">
-          <img src="/fOpImWI%20-%20Imgur.png" alt="DEKIKI" className="logo-hero" />
+         <img src="https://raw.githubusercontent.com/vladionolteanu-star/dekiki-shop/main/fOpImWI%20-%20Imgur.png" alt="DEKIKI" className="logo-hero" />
           <h1 className="title-main">DE KIKI - DE MIKI DE 3 LEI RIDICHII!</h1>
           <p className="tagline">De ce? De kiki!</p>
           <div className="search-box">
