@@ -8,6 +8,8 @@
   "dependencies": {
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "@shopify/hydrogen-react": "latest",
+    "graphql-request": "latest"
   }
 }
