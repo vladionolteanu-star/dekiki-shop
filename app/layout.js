@@ -28,13 +28,20 @@ export default function RootLayout({ children }) {
             <div className="glitch-overlay"></div>
           </div>
           <div className="content-overlay">
-            <h1 className="hero-title">
-              <span className="word w1">DE KIKI</span>
-              <span className="word w2">-</span>
-              <span className="word w3">DE MIKI</span>
-              <span className="word w4">DE 3 LEI</span>
-              <span className="word w5">RIDICHII!</span>
-            </h1>
+  <h1 className="hero-title">
+    <span className="sequence seq1">De Kiki</span>
+    <span className="sequence seq2">De miki</span>
+    <span className="sequence seq3">De 3 lei Ridichii!</span>
+  </h1>
+  <p className="final-text">De ce? De kiki!</p>
+  <div className="search-quantum">
+    <div className="search-aurora"></div>
+    <input type="text" className="search-field" placeholder="ENTER THE VOID..." />
+    <div className="search-particles">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</div>
             <p className="hero-subtitle">De ce? De kiki!</p>
             <div className="search-quantum">
               <div className="search-aurora"></div>
