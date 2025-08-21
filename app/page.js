@@ -1,10 +1,9 @@
 'use client'
-
 import { useState, useEffect } from 'react'
 
 // Shopify Storefront API Configuration
-const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN || 'your-shop.myshopify.com'
-const SHOPIFY_STOREFRONT_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN || 'your-token'
+const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN
+const SHOPIFY_STOREFRONT_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN
 
 export default function Home() {
   const [products, setProducts] = useState([])
@@ -170,7 +169,7 @@ export default function Home() {
             // Loading State
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {[...Array(8)].map((_, i) => (
-                <div key={i} className="animate-pulse">
+                <div className="animate-pulse" key={i}>
                   <div className="bg-gray-200 aspect-square rounded-lg mb-4"></div>
                   <div className="h-4 bg-gray-200 rounded mb-2"></div>
                   <div className="h-4 bg-gray-200 rounded w-1/2"></div>
@@ -183,7 +182,7 @@ export default function Home() {
               <div className="text-6xl mb-4">😕</div>
               <h2 className="text-2xl font-bold mb-2">Oops! Ceva nu a mers bine</h2>
               <p className="text-gray-600 mb-6">{error}</p>
-              <button 
+              <button
                 onClick={fetchProducts}
                 className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
               >
@@ -201,7 +200,7 @@ export default function Home() {
             // Products Grid
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredProducts.map((product) => (
-                <div 
+                <div
                   key={product.id} 
                   className="group cursor-pointer"
                 >
@@ -263,7 +262,7 @@ export default function Home() {
         <div className="fixed bottom-4 right-4 bg-black text-white p-6 rounded-lg shadow-xl z-50 max-w-sm">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-bold text-lg">Coș ({cart.length} produse)</h3>
-            <button 
+            <button
               onClick={() => setIsCartOpen(false)}
               className="text-gray-400 hover:text-white"
             >
