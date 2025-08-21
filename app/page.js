@@ -1,9 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react'
 
-// Shopify Storefront API Configuration
-const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN
-const SHOPIFY_STOREFRONT_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN
+// Shopify Storefront API Configuration - Using hardcoded values
+const SHOPIFY_DOMAIN = 'dqnyg5-8i.myshopify.com'
+const SHOPIFY_STOREFRONT_TOKEN = '0656c9eb317848c9f55854cc45a7ff72'
 
 export default function Home() {
   const [products, setProducts] = useState([])
@@ -13,7 +13,7 @@ export default function Home() {
   const [cart, setCart] = useState([])
   const [isCartOpen, setIsCartOpen] = useState(false)
 
-  // Fetch products from Shopify
+  // Fetch products from Shopify - NO fallback/mock data
   useEffect(() => {
     fetchProducts()
   }, [])
@@ -71,7 +71,7 @@ export default function Home() {
       )
 
       if (!response.ok) {
-        throw new Error('Failed to fetch products')
+        throw new Error('Failed to fetch products from Shopify API')
       }
 
       const data = await response.json()
@@ -80,6 +80,7 @@ export default function Home() {
         throw new Error(data.errors[0].message)
       }
 
+      // Only use data from Shopify API - NO fallback or demo products
       const formattedProducts = data.data.products.edges.map(({ node }) => ({
         id: node.id,
         title: node.title,
@@ -97,8 +98,10 @@ export default function Home() {
       setProducts(formattedProducts)
       setLoading(false)
     } catch (err) {
-      console.error('Error fetching products:', err)
+      console.error('Error fetching products from Shopify:', err)
       setError(err.message)
+      // NO fallback products - only show error if API fails
+      setProducts([])
       setLoading(false)
     }
   }
@@ -118,7 +121,7 @@ export default function Home() {
     }, 1500)
   }
 
-  // Filter products by category (using tags)
+  // Filter products by category (using tags) - only from Shopify data
   const categories = ['all', 'funny', 'gift', 'tech', 'special']
   const filteredProducts = selectedCategory === 'all' 
     ? products 
@@ -136,7 +139,7 @@ export default function Home() {
             Produse funny pentru oameni funny 🎉
           </p>
           <div className="inline-block px-6 py-2 border border-purple-400 text-purple-400 rounded-full">
-            {products.length} produse disponibile
+            {products.length} produse disponibile din Shopify
           </div>
         </div>
       </section>
@@ -162,7 +165,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Products Grid */}
+      {/* Products Grid - Only Shopify products, no fallbacks */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
           {loading ? (
@@ -177,10 +180,10 @@ export default function Home() {
               ))}
             </div>
           ) : error ? (
-            // Error State
+            // Error State - No fallback products
             <div className="text-center py-20">
               <div className="text-6xl mb-4">😕</div>
-              <h2 className="text-2xl font-bold mb-2">Oops! Ceva nu a mers bine</h2>
+              <h2 className="text-2xl font-bold mb-2">Eroare la încărcarea produselor din Shopify</h2>
               <p className="text-gray-600 mb-6">{error}</p>
               <button
                 onClick={fetchProducts}
@@ -190,14 +193,14 @@ export default function Home() {
               </button>
             </div>
           ) : filteredProducts.length === 0 ? (
-            // Empty State
+            // Empty State - No products from Shopify
             <div className="text-center py-20">
               <div className="text-6xl mb-4">🔍</div>
-              <h2 className="text-2xl font-bold mb-2">Nu am găsit produse</h2>
-              <p className="text-gray-600">Încearcă altă categorie</p>
+              <h2 className="text-2xl font-bold mb-2">Nu există produse în Shopify pentru această categorie</h2>
+              <p className="text-gray-600">Încearcă altă categorie sau verifică magazinul Shopify</p>
             </div>
           ) : (
-            // Products Grid
+            // Products Grid - Only from Shopify API
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredProducts.map((product) => (
                 <div
@@ -270,7 +273,7 @@ export default function Home() {
             </button>
           </div>
           <p className="text-sm text-gray-300 mb-4">
-            Produsele au fost adăugate în coș!
+            Produsele din Shopify au fost adăugate în coș!
           </p>
           <button className="w-full py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
             Vezi Coșul
