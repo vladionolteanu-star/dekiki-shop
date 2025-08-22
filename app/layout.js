@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <head>
         {/* ✨ Metadata de bază */}
         <title>DEKIKI - De ce? De kiki!</title>
-        <meta name="description" content="DE MIKI DE 3 LEI RIDICHII - Experiență digitală premium" />
+        <meta name="description" content="DE MIKI DE 3 LEI RIDICHI - Experiență digitală premium" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
         {/* ✨ Font Loading Optimizat */}
