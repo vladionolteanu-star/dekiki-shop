@@ -662,3 +662,43 @@ body {
     break-inside: avoid;
   }
 }
+/* ============================= */
+/* Mobile Responsive Fixes */
+/* ============================= */
+
+/* Mobile Header */
+@media (max-width: 768px) {
+  .header-masterpiece {
+    height: 100vh !important;
+  }
+  
+  .logo-layer {
+    width: 90% !important;
+    max-width: 350px !important;
+  }
+  
+  .hero-title {
+    font-size: 2rem !important;
+    height: auto !important;
+  }
+  
+  .final-text {
+    font-size: 1.5rem !important;
+  }
+  
+  .search-field {
+    width: 100% !important;
+    font-size: 1rem !important;
+  }
+}
+
+/* Product Grid Mobile */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  button {
+    min-height: 48px !important;
+  }
+}
