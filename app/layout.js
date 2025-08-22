@@ -1,9 +1,6 @@
-import './globals.css'
+'use client'
 
-export const metadata = {
-  title: 'DE KIKI - De ce? De kiki!',
-  description: 'Magazin de cadouri funny și ciudate',
-}
+import './globals.css'
 
 export default function RootLayout({ children }) {
   return (
@@ -308,26 +305,6 @@ export default function RootLayout({ children }) {
             © 2024 DE KIKI SHOP - Toate drepturile rezervate pentru produse funny
           </p>
         </footer>
-
-        {/* Animation Styles */}
-        <style jsx>{`
-          @keyframes sparkle {
-            0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
-            50% { opacity: 0.5; transform: scale(1.2) rotate(180deg); }
-          }
-          @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-          }
-        `}</style>
-
-        {/* Mobile Menu Script */}
-        <script dangerouslySetInnerHTML={{__html: `
-          // Simple mobile menu toggle
-          if (window.innerWidth < 768) {
-            // Add hamburger menu logic here
-          }
-        `}} />
       </body>
     </html>
   )
