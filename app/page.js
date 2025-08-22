@@ -108,10 +108,10 @@ export default function Home() {
     setIsCartOpen(true)
     
     const button = event.target
-    button.textContent = '✓ ADĂUGAT'
+    button.textContent = 'â ADÄUGAT'
     button.style.background = '#10b981'
     setTimeout(() => {
-      button.textContent = 'ADAUGĂ ÎN COȘ'
+      button.textContent = 'ADAUGÄ ÃN COÈ'
       button.style.background = ''
     }, 1500)
   }
@@ -176,9 +176,9 @@ export default function Home() {
               </h1>
 
               <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-                Produse <span className="text-purple-400 font-bold">funny</span> care îți fac ziua mai 
+                Produse <span className="text-purple-400 font-bold">funny</span> care Ã®Èi fac ziua mai 
                 <span className="inline-block mx-2 px-3 py-1 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-full animate-pulse">
-                  amuzantă
+                  amuzantÄ
                 </span>
               </p>
 
@@ -197,7 +197,7 @@ export default function Home() {
                 <button className="group px-8 py-4 border-2 border-purple-500 text-purple-400 font-bold rounded-full hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all">
                   <span className="flex items-center gap-2">
                     <span>RANDOM PRODUCT</span>
-                    <span className="text-xl group-hover:rotate-180 transition-transform">🎲</span>
+                    <span className="text-xl group-hover:rotate-180 transition-transform">ð²</span>
                   </span>
                 </button>
               </div>
@@ -218,7 +218,7 @@ export default function Home() {
                 </div>
                 <div className="text-center group cursor-pointer">
                   <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 group-hover:scale-110 transition-transform">
-                    ∞
+                    â
                   </div>
                   <div className="text-xs text-gray-500 uppercase tracking-wider">Amuzament</div>
                 </div>
@@ -257,108 +257,250 @@ export default function Home() {
       </section>
 
       {/* Products Grid */}
-      <section className="py-12 px-4">
-        <div className="max-w-6xl mx-auto">
+// 🔥 ÎNLOCUIEȘTE SECȚIUNEA PRODUCTS GRID din page.js
+// Găsește: <section className="py-12 px-4">
+// Și înlocuiește TOATĂ secțiunea până la </section> cu:
+
+      {/* MASTERPIECE Product Grid - This Is Why I'm Broke Style */}
+      <section className="py-8 md:py-16 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-black mb-4">
+              <span className="text-black">PRODUSE CARE TE FAC SĂ ZICI</span>{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600">
+                "DE CE? DE KIKI!"
+              </span>
+            </h2>
+            <p className="text-gray-600 text-lg">
+              {filteredProducts.length} produse care îți vor ruina bugetul (în mod amuzant)
+            </p>
+          </div>
+
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {[...Array(8)].map((_, i) => (
+            // Loading State - Skeleton Grid
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[...Array(6)].map((_, i) => (
                 <div className="animate-pulse" key={i}>
-                  <div className="bg-gray-200 aspect-square rounded-lg mb-4"></div>
-                  <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                  <div className="bg-gray-200 aspect-[4/5] rounded-2xl mb-4"></div>
+                  <div className="h-6 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
                 </div>
               ))}
             </div>
           ) : error ? (
-            <div className="text-center py-20">
-              <div className="text-6xl mb-4">😕</div>
-              <h2 className="text-2xl font-bold mb-2">Eroare la încărcarea produselor</h2>
-              <p className="text-gray-600 mb-6">{error}</p>
+            // Error State
+            <div className="text-center py-20 bg-white rounded-3xl shadow-lg">
+              <div className="text-8xl mb-6">🤷</div>
+              <h2 className="text-3xl font-bold mb-4">Houston, avem o problemă!</h2>
+              <p className="text-gray-600 mb-8 text-lg">{error}</p>
               <button
                 onClick={fetchProducts}
-                className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-bold rounded-full hover:scale-105 transition-transform shadow-lg"
               >
-                Încearcă din nou
+                ÎNCEARCĂ DIN NOU
               </button>
             </div>
           ) : filteredProducts.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="text-6xl mb-4">🔍</div>
-              <h2 className="text-2xl font-bold mb-2">Nu există produse</h2>
-              <p className="text-gray-600">Încearcă altă categorie</p>
+            // Empty State
+            <div className="text-center py-20 bg-white rounded-3xl shadow-lg">
+              <div className="text-8xl mb-6 animate-bounce">🎈</div>
+              <h2 className="text-3xl font-bold mb-4">Categoria asta e goală!</h2>
+              <p className="text-gray-600 text-lg mb-8">
+                Dar avem alte produse funny care te așteaptă
+              </p>
+              <button
+                onClick={() => setSelectedCategory('all')}
+                className="px-8 py-4 bg-black text-white font-bold rounded-full hover:bg-purple-600 transition-colors"
+              >
+                VEZI TOATE PRODUSELE
+              </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
-                <div key={product.id} className="group cursor-pointer">
-                  <div className="relative aspect-square mb-4 overflow-hidden rounded-lg bg-gray-100">
+            // MASTERPIECE GRID
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {filteredProducts.map((product, index) => (
+                <div 
+                  key={product.id} 
+                  className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                    animation: 'fadeInUp 0.6s ease-out forwards',
+                    opacity: 0
+                  }}
+                >
+                  {/* Random Fun Badge */}
+                  {index === 0 && (
+                    <div className="absolute top-4 left-4 z-20">
+                      <span className="px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full animate-pulse">
+                        🔥 HOT
+                      </span>
+                    </div>
+                  )}
+                  {index === 2 && (
+                    <div className="absolute top-4 left-4 z-20">
+                      <span className="px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full">
+                        WTF?!
+                      </span>
+                    </div>
+                  )}
+                  {index === 4 && (
+                    <div className="absolute top-4 left-4 z-20">
+                      <span className="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
+                        💸 SHUT UP & TAKE MY MONEY
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Product Image Container */}
+                  <div className="relative aspect-[4/5] bg-gray-100 overflow-hidden">
+                    {/* Image */}
                     <img
                       src={product.image}
                       alt={product.imageAlt}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       loading="lazy"
                     />
+                    
+                    {/* Overlay on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p className="text-white text-sm mb-3 line-clamp-3">
+                          {product.description || 'Cel mai funny produs pe care l-ai văzut azi!'}
+                        </p>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            window.open(`/products/${product.handle}`, '_blank')
+                          }}
+                          className="text-white font-bold flex items-center gap-2 hover:gap-3 transition-all"
+                        >
+                          Vezi Detalii
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Sold Out Overlay */}
                     {!product.available && (
-                      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                        <span className="text-white font-bold">SOLD OUT</span>
+                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center backdrop-blur-sm">
+                        <div className="text-center">
+                          <span className="text-white text-2xl font-black">SOLD OUT</span>
+                          <p className="text-white/80 text-sm mt-1">Prea funny, s-a vândut!</p>
+                        </div>
                       </div>
                     )}
                   </div>
                   
-                  <div className="space-y-2">
-                    <h3 className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+                  {/* Product Info */}
+                  <div className="p-6">
+                    {/* Title */}
+                    <h3 className="font-bold text-lg md:text-xl text-gray-900 mb-3 line-clamp-2 group-hover:text-purple-600 transition-colors">
                       {product.title}
                     </h3>
                     
-                    <p className="text-sm text-gray-500 line-clamp-2">
-                      {product.description}
-                    </p>
-                    
-                    <div className="flex items-center justify-between pt-2">
-                      <span className="text-2xl font-bold">
-                        {parseFloat(product.price).toFixed(0)} LEI
-                      </span>
+                    {/* Price and Action */}
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600">
+                          {parseFloat(product.price).toFixed(0)}
+                        </span>
+                        <span className="text-gray-500 text-sm ml-1">LEI</span>
+                      </div>
                       
                       <button
                         onClick={(e) => {
                           e.stopPropagation()
-                          if (product.available) addToCart(product)
+                          if (product.available) {
+                            addToCart(product)
+                            // Fun animation
+                            e.target.innerHTML = '🎉'
+                            setTimeout(() => {
+                              e.target.innerHTML = `
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                              `
+                            }, 1000)
+                          }
                         }}
                         disabled={!product.available}
-                        className={`px-4 py-2 rounded-lg font-semibold transition-all ${
+                        className={`p-3 rounded-full transition-all ${
                           product.available
-                            ? 'bg-black text-white hover:bg-purple-600'
+                            ? 'bg-black text-white hover:bg-purple-600 hover:scale-110 hover:rotate-12'
                             : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                         }`}
                       >
-                        {product.available ? 'ADAUGĂ ÎN COȘ' : 'INDISPONIBIL'}
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
                       </button>
                     </div>
+
+                    {/* Fun Tags */}
+                    {product.tags && product.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {product.tags.slice(0, 3).map((tag, i) => (
+                          <span 
+                            key={i}
+                            className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
           )}
+
+          {/* Load More Button */}
+          {!loading && !error && filteredProducts.length >= 20 && (
+            <div className="text-center mt-12">
+              <button className="px-8 py-4 bg-black text-white font-bold rounded-full hover:bg-purple-600 transition-colors hover:scale-105 shadow-lg">
+                ÎNCARCĂ MAI MULTE PRODUSE FUNNY
+              </button>
+            </div>
+          )}
         </div>
+
+        {/* Animation Styles */}
+        <style jsx>{`
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}</style>
       </section>
+      
 
       {/* Cart Popup */}
       {isCartOpen && (
         <div className="fixed bottom-4 right-4 bg-black text-white p-6 rounded-lg shadow-xl z-50 max-w-sm">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="font-bold text-lg">Coș ({cart.length} produse)</h3>
+            <h3 className="font-bold text-lg">CoÈ ({cart.length} produse)</h3>
             <button
               onClick={() => setIsCartOpen(false)}
               className="text-gray-400 hover:text-white"
             >
-              ✕
+              â
             </button>
           </div>
           <p className="text-sm text-gray-300 mb-4">
-            Produsele au fost adăugate în coș!
+            Produsele au fost adÄugate Ã®n coÈ!
           </p>
           <button className="w-full py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
-            Vezi Coșul
+            Vezi CoÈul
           </button>
         </div>
       )}
